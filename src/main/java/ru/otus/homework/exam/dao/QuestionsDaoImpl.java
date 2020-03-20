@@ -5,27 +5,24 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
 import lombok.RequiredArgsConstructor;
 import ru.otus.homework.exam.model.Question;
-import org.springframework.context.MessageSource;
+import ru.otus.homework.exam.utils.LocalizedFileNameProvider;
 import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
 public class QuestionsDaoImpl implements QuestionsDao {
 
-    private final MessageSource messageSource;
+    private final LocalizedFileNameProvider localizedFileNameProvider;
 
     @Override
     public List<Question> getQuestions() {
         List<Question> result = new ArrayList<>();
 
-        String fileName = messageSource.getMessage("questions.file", null, Locale.getDefault());
-
-        try (Scanner scanner = new Scanner(getFileFromResources(fileName))) {
+        try (Scanner scanner = new Scanner(getFileFromResources(localizedFileNameProvider.getLocalizedFileName()))) {
             while (scanner.hasNextLine()) {
                 result.add(getQuestionFromLine(scanner.nextLine(), ";"));
             }

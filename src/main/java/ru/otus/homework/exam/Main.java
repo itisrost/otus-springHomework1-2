@@ -17,6 +17,6 @@ public class Main {
 
         ExamService examService = context.getBean(ExamServiceImpl.class);
 
-        System.out.println(examService.exam());
+        examService.exam();
     }
 }

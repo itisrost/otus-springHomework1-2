@@ -1,7 +1,6 @@
 package ru.otus.homework.exam.dao;
 
 import java.util.List;
-import java.util.Locale;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.otus.homework.exam.model.Question;
-import org.springframework.context.MessageSource;
+import ru.otus.homework.exam.utils.LocalizedFileNameProvider;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -21,16 +20,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class QuestionsDaoImplTest {
 
     @Mock
-    private MessageSource messageSource;
+    private LocalizedFileNameProvider localizedFileNameProvider;
 
     @Test
     @DisplayName("Тестируем метод getQuestions")
     void getQuestionsTest() {
 
-        Mockito.when(messageSource.getMessage("questions.file", null, Locale.getDefault()))
+        Mockito.when(localizedFileNameProvider.getLocalizedFileName())
                 .thenReturn("testQuestions.csv");
 
-        QuestionsDao questionsDao = new QuestionsDaoImpl(messageSource);
+        QuestionsDao questionsDao = new QuestionsDaoImpl(localizedFileNameProvider);
 
         List<Question> questions = questionsDao.getQuestions();
 
