@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class RegistrationServiceImpl implements RegistrationService {
 
-    private final InputOutputServiceImpl inputOutputService;
+    private final InputOutputService inputOutputService;
 
     public Student registerStudent() {
         inputOutputService.printMessage("name.get");
