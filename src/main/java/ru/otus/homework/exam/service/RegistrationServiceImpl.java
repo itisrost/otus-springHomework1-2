@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class RegistrationServiceImpl implements RegistrationService {
 
-    private final InputOutputServiceImpl inputOutputUtil;
+    private final InputOutputServiceImpl inputOutputService;
 
     public Student registerStudent() {
-        inputOutputUtil.printMessage("name.get");
-        String name = inputOutputUtil.readLine();
+        inputOutputService.printMessage("name.get");
+        String name = inputOutputService.readLine();
         while (StringUtils.isBlank(name)) {
-            inputOutputUtil.printMessage("name.error.empty");
-            name = inputOutputUtil.readLine();
+            inputOutputService.printMessage("name.error.empty");
+            name = inputOutputService.readLine();
         }
 
         return new Student(name);

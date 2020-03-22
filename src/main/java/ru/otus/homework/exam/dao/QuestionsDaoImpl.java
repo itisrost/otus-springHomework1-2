@@ -9,20 +9,20 @@ import java.util.Scanner;
 
 import lombok.RequiredArgsConstructor;
 import ru.otus.homework.exam.model.Question;
-import ru.otus.homework.exam.utils.LocalizedFileNameProvider;
+import ru.otus.homework.exam.utils.LocalizationProperties;
 import org.springframework.stereotype.Repository;
 
 @Repository
 @RequiredArgsConstructor
 public class QuestionsDaoImpl implements QuestionsDao {
 
-    private final LocalizedFileNameProvider localizedFileNameProvider;
+    private final LocalizationProperties localizationProperties;
 
     @Override
     public List<Question> getQuestions() {
         List<Question> result = new ArrayList<>();
 
-        try (Scanner scanner = new Scanner(getFileFromResources(localizedFileNameProvider.getLocalizedFileName()))) {
+        try (Scanner scanner = new Scanner(getFileFromResources(localizationProperties.getLocalizedFileName()))) {
             while (scanner.hasNextLine()) {
                 result.add(getQuestionFromLine(scanner.nextLine(), ";"));
             }

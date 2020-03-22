@@ -1,27 +1,19 @@
 package ru.otus.homework.exam.service;
 
 import java.io.PrintStream;
-import java.util.Locale;
 import java.util.Scanner;
 
+import lombok.RequiredArgsConstructor;
+import ru.otus.homework.exam.utils.LocalizationProperties;
 import org.springframework.context.MessageSource;
 
+@RequiredArgsConstructor
 public class InputOutputServiceImpl implements InputOutputService{
 
     private final MessageSource messageSource;
     private final PrintStream output;
     private final Scanner input;
-    private final String locale;
-
-    public InputOutputServiceImpl(MessageSource messageSource,
-                                  PrintStream output,
-                                  Scanner input,
-                                  String locale) {
-        this.messageSource = messageSource;
-        this.output = output;
-        this.input = input;
-        this.locale = locale;
-    }
+    private final LocalizationProperties localizationProperties;
 
     public String readLine() {
         return input.nextLine();
@@ -32,6 +24,6 @@ public class InputOutputServiceImpl implements InputOutputService{
     }
 
     public void printMessage(String messageName, Object... args){
-        printLine(messageSource.getMessage(messageName, args, Locale.forLanguageTag(locale)));
+        printLine(messageSource.getMessage(messageName, args, localizationProperties.getLocale()));
     }
 }

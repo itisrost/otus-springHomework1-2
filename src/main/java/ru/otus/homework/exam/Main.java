@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
 
-        ExamService examService = context.getBean(ExamServiceImpl.class);
+        ExamService examService = context.getBean(ExamService.class);
 
         examService.exam();
     }

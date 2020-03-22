@@ -9,7 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.otus.homework.exam.model.Question;
-import ru.otus.homework.exam.utils.LocalizedFileNameProvider;
+import ru.otus.homework.exam.utils.LocalizationProperties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class QuestionsDaoImplTest {
 
     @Mock
-    private LocalizedFileNameProvider localizedFileNameProvider;
+    private LocalizationProperties localizedFileNameProvider;
 
     @Test
     @DisplayName("Тестируем метод getQuestions")
